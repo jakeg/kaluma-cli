@@ -3,7 +3,8 @@
 const fs = require("fs");
 const path = require("path");
 const { program } = require("commander");
-const SerialPort = require("serialport");
+const { SerialPort } = require("serialport");
+
 const config = require("../package.json");
 const colors = require("colors/safe");
 const filesize = require("file-size");
@@ -13,7 +14,7 @@ const erase = require("../lib/erase");
 const bundle = require("../lib/bundle");
 const put = require("../lib/put");
 const get = require("../lib/get");
-const eval = require("../util/eval");
+const eval2 = require("../util/eval");
 const { BufferedSerial } = require("../util/buffered-serial");
 
 const serialOptions = {
@@ -122,7 +123,7 @@ program
     const port = await findPort(options.port, true);
 
     // shell connect
-    const serial = new SerialPort(port, serialOptions);
+    const serial = new SerialPort({ port, path: './', baudRate: serialOptions.baudRate, autoOpen: serialOptions.autoOpen });
     serial.open(async (err) => {
       if (err) {
         console.error(err);
@@ -372,7 +373,7 @@ program
             return stat.size;
           }
           `;
-          let fsize = await eval(bs, fun, src);
+          let fsize = await eval2(bs, fun, src);
           process.stdout.write(colors.grey("copying "));
           await get(bs, src, dest, fsize, () => {
             process.stdout.write(colors.grey("."));

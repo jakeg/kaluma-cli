@@ -7,7 +7,7 @@ const UglifyJS = require("uglify-js");
  * @param  {...any} args 
  * @returns {any}
  */
-async function eval(bs, fun, ...args) {
+async function eval2(bs, fun, ...args) {
   const stringifiedArgs = args.map(arg => JSON.stringify(arg));
   const called = `(${fun})(${stringifiedArgs.join(',')})`;
   const wrapped = `
@@ -44,4 +44,4 @@ async function eval(bs, fun, ...args) {
   return result;
 }
 
-module.exports = eval;
+module.exports = eval2;

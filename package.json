@@ -25,14 +25,14 @@
   },
   "dependencies": {
     "colors": "^1.4.0",
-    "commander": "^8.3.0",
+    "commander": "^11.0.0",
     "crc": "^3.8.0",
     "file-size": "^1.0.0",
     "serialport": "^12.0.0",
     "uglify-js": "^3.14.5",
     "webpack": "^5.68.0"
   },
-  "trustedDependencies": ["serialport", "@serialport"],
+  "trustedDependencies": ["serialport", "@serialport", "@serialport/bindings-cpp", "serialport/bindings-cpp", "commander"],
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^19.0.2",
